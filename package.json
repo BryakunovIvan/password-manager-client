@@ -6,7 +6,9 @@
   "author": "Ivan Bryakunov <ivan.bryakunov@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack-cli --config='./webpack.config.js'"
+    "build:prod": "webpack-cli --config='./webpack.prod-config.js'",
+    "build:dev": "webpack-cli --config='./webpack.dev-config.js'",
+    "start:dev": "webpack-dev-server --config='./webpack.dev-config.js' --open"
   },
   "dependencies": {
     "react": "^18.0.0",
@@ -15,6 +17,8 @@
   "devDependencies": {
     "html-webpack-plugin": "^5.5.0",
     "webpack": "^5.71.0",
-    "webpack-cli": "^4.9.2"
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.0",
+    "webpack-merge": "^5.8.0"
   }
 }
