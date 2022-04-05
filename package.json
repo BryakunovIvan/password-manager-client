@@ -1,0 +1,16 @@
+{
+  "name": "password-manager-client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "http://188.235.130.90:5431/password-manager/password-manager-client.git",
+  "author": "Ivan Bryakunov <ivan.bryakunov@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.71.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
