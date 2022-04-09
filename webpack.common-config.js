@@ -19,11 +19,12 @@ module.exports = {
                         cacheCompression: false,
                     }
                 }
-            }
+            },
+            { test: /\.(ts|tsx)?$/, exclude: /node_modules/, loader: "ts-loader" }
         ]
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx'],
+        extensions: ['*', '.js', '.jsx', ".ts", ".tsx"],
     },
     plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
 };
