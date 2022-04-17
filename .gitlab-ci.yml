@@ -16,7 +16,7 @@ test-job2:
     - echo "which simulates a test that runs 20 seconds longer than test-job1"
     - sleep 20
   
-test-job1:
+test-job3:
   stage: test
   script:
     - echo "This job tests something"
