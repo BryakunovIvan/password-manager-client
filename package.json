@@ -8,7 +8,8 @@
   "scripts": {
     "build:prod": "webpack-cli --config='./webpack.prod-config.js'",
     "build:dev": "webpack-cli --config='./webpack.dev-config.js'",
-    "start:dev": "webpack-dev-server --config='./webpack.dev-config.js' --open"
+    "start:dev": "webpack-dev-server --config='./webpack.dev-config.js' --open",
+    "start": "yarn start:dev"
   },
   "dependencies": {
     "react": "^18.0.0",

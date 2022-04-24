@@ -34,12 +34,12 @@ const addTransaction = (objectStoreName: string, value: Object) => {
         };
 
         request.onsuccess = () => {
-            resolve(value)
+            resolve({...value, id: request.result});
         }
     })
 }
 
-const getTransaction = (objectStoreName: string, id: string) => {
+const getTransaction = (objectStoreName: string) => {
     const transaction = DB.transaction(objectStoreName, 'readwrite');
     const store = transaction.objectStore(objectStoreName);
     const request = store.getAll();
@@ -58,12 +58,12 @@ const getTransaction = (objectStoreName: string, id: string) => {
 export const addUser = (user: object) => {
     return addTransaction("user", user)
 }
-export const getUsers = (name: string) => {
-    return getTransaction('user', name)
+export const getAllUsers = () => {
+    return getTransaction('user')
 }
 
-export const addPass = (pass: object) => addTransaction('pass', pass);
-export const getPass = (id: string) => getTransaction('pass', id);
+// export const addPass = (pass: object) => addTransaction('pass', pass);
+// export const getPass = (id: string) => getTransaction('pass', id);
 
 export const deletePass = () => { };
 
