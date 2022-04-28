@@ -43,7 +43,6 @@ const addTransaction = (objectStoreName: string, value: Object) => {
 }
 
 const getTransaction = (objectStoreName: string) => {
-    console.log(DB)
     const transaction = DB.transaction(objectStoreName, 'readwrite');
     const store = transaction.objectStore(objectStoreName);
     const request = store.getAll();
@@ -54,7 +53,6 @@ const getTransaction = (objectStoreName: string) => {
             reject(request.error);
         };
         request.onsuccess = function () {
-            console.log(request.result)
             resolve(request.result);
         }
     })
