@@ -25,9 +25,15 @@ export const initDB = new Promise((resolve, reject) => {
     };
 })
 
-const addTransaction = (objectStoreName: string, value: Object) => {
+const getDBStore = (objectStoreName: string) => {
     const transaction = DB.transaction(objectStoreName, 'readwrite');
     const store = transaction.objectStore(objectStoreName);
+
+    return store
+};
+
+const addTransaction = (objectStoreName: string, value: Object) => {
+    const store = getDBStore(objectStoreName)
     const request = store.add(value);
 
     return new Promise((resolve, reject) => {
@@ -43,8 +49,7 @@ const addTransaction = (objectStoreName: string, value: Object) => {
 }
 
 const getTransaction = (objectStoreName: string) => {
-    const transaction = DB.transaction(objectStoreName, 'readwrite');
-    const store = transaction.objectStore(objectStoreName);
+    const store = getDBStore(objectStoreName)
     const request = store.getAll();
 
     return new Promise((resolve, reject) => {
@@ -58,6 +63,22 @@ const getTransaction = (objectStoreName: string) => {
     })
 }
 
+const deleteTransactionById = (objectStoreName: string, id: string | number) => {
+    const store = getDBStore(objectStoreName)
+    const request = store.delete(id);
+
+    return new Promise((resolve, reject) => {
+        request.onerror = function () {
+            console.error("Error", request.error);
+            reject(request.error);
+        };
+        request.onsuccess = function () {
+            resolve(request.result);
+        }
+    })
+}
+
+
 export const addUser = (user: object) => {
     return addTransaction("user", user)
 }
@@ -65,6 +86,7 @@ export const getAllUsers = () => {
     return getTransaction('user')
 }
 
+export const deleteUserById = (userId: number) => deleteTransactionById("user", userId);
 // export const addPass = (pass: object) => addTransaction('pass', pass);
 // export const getPass = (id: string) => getTransaction('pass', id);
 

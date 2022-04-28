@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addUser, getAllUsers, initDB } from './db';
+import { addUser, deleteUserById, getAllUsers, initDB } from './db';
 
 type TUser = { name: string, id: number }
 const App = () => {
@@ -10,14 +10,13 @@ const App = () => {
     }
 
     const handleDeleteUser = () => {
-        getAllUsers().then(setUsers);
+        deleteUserById(users[0].id).then(() => getAllUsers().then(setUsers))
     }
 
     useEffect(() => {
         initDB
-            .then((res) => console.log(res))
-            .catch(console.error)
             .then(() => getAllUsers().then(setUsers))
+            .catch(console.error)
     }, []);
 
     return <div>
