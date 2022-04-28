@@ -2,25 +2,28 @@
 const openRequest = indexedDB.open('passDB', 1);
 let DB: IDBDatabase = null;
 
-openRequest.onupgradeneeded = function () {
-    DB = openRequest.result;
-    if (!DB.objectStoreNames.contains('user')) {
-        DB.createObjectStore('user', { keyPath: 'id', autoIncrement: true });
-    }
-    if (!DB.objectStoreNames.contains('pass')) {
-        DB.createObjectStore('pass', { keyPath: 'id', autoIncrement: true });
-    }
-    console.log(DB)
-};
-
-openRequest.onerror = function () {
-    console.error("Error", openRequest.error);
-};
-
-openRequest.onsuccess = function () {
-    DB = openRequest.result;
-};
-
+export const initDB = new Promise((resolve, reject) => {
+    openRequest.onupgradeneeded = function () {
+        DB = openRequest.result;
+        if (!DB.objectStoreNames.contains('user')) {
+            DB.createObjectStore('user', { keyPath: 'id', autoIncrement: true });
+        }
+        if (!DB.objectStoreNames.contains('pass')) {
+            DB.createObjectStore('pass', { keyPath: 'id', autoIncrement: true });
+        }
+        resolve(openRequest);
+    };
+    
+    openRequest.onerror = function () {
+        console.error("Error", openRequest.error);
+        reject(openRequest)
+    };
+    
+    openRequest.onsuccess = function () {
+        DB = openRequest.result;
+        resolve(openRequest);
+    };
+})
 
 const addTransaction = (objectStoreName: string, value: Object) => {
     const transaction = DB.transaction(objectStoreName, 'readwrite');
@@ -40,6 +43,7 @@ const addTransaction = (objectStoreName: string, value: Object) => {
 }
 
 const getTransaction = (objectStoreName: string) => {
+    console.log(DB)
     const transaction = DB.transaction(objectStoreName, 'readwrite');
     const store = transaction.objectStore(objectStoreName);
     const request = store.getAll();
@@ -50,6 +54,7 @@ const getTransaction = (objectStoreName: string) => {
             reject(request.error);
         };
         request.onsuccess = function () {
+            console.log(request.result)
             resolve(request.result);
         }
     })

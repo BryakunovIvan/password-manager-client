@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addUser, getAllUsers } from './db';
+import { addUser, getAllUsers, initDB } from './db';
 
 type TUser = { name: string, id: number }
 const App = () => {
@@ -10,19 +10,22 @@ const App = () => {
     }
 
     const handleDeleteUser = () => {
-
+        getAllUsers().then(setUsers);
     }
 
     useEffect(() => {
-        getAllUsers().then(setUsers);
-    });
+        initDB
+            .then((res) => console.log(res))
+            .catch(console.error)
+            .then(() => getAllUsers().then(setUsers))
+    }, []);
 
     return <div>
         <input value={name} placeholder="Введите имя" onChange={(e) => setName(e.target.value)}></input>
         <button onClick={handleAddUser}>Добавить пользователя</button>
         <button onClick={handleDeleteUser}>Удалить пользователя</button>
         {
-              users.map(user => <div key={user.id}>{user.name} {user.id}</div>)
+            users.map(user => <div key={user.id}>{user.name} {user.id}</div>)
         }
     </div>
 };
