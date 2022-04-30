@@ -3,11 +3,15 @@ build-job:
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
     - yarn
+  artifacts: 
+    paths:
+      - /build
 
 
 lint-job1:
   stage: test
   script:
+    - cd /build
     - yarn lint
 
 test-job1:
