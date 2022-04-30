@@ -5,10 +5,9 @@ build-job:
 
 
 lint-job1:
-  stage: lint
+  stage: test
   script:
     - yarn lint
-
 
 test-job1:
   stage: test
