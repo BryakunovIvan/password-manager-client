@@ -3,10 +3,12 @@ build-job:
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
 
-lint-job:
+
+lint-job1:
   stage: lint
   script:
     - yarn lint
+
 
 test-job1:
   stage: test
