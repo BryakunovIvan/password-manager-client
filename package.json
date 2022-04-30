@@ -9,7 +9,9 @@
     "build:prod": "webpack-cli --config='./webpack.prod-config.js'",
     "build:dev": "webpack-cli --config='./webpack.dev-config.js'",
     "start:dev": "webpack-dev-server --config='./webpack.dev-config.js' --open",
-    "start": "yarn start:dev"
+    "start": "yarn start:dev",
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
     "react": "^18.0.0",
@@ -20,7 +22,15 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@types/react": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
     "babel-loader": "^8.2.4",
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
     "html-webpack-plugin": "^5.5.0",
     "ts-loader": "^9.2.8",
     "typescript": "^4.6.3",
