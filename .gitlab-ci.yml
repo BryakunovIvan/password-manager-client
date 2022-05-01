@@ -9,7 +9,7 @@ build-job:
     - yarn
   artifacts: 
     paths:
-      - /build/
+      - /build/*
 
 
 lint-job1:
