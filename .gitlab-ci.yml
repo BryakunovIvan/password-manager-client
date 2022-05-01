@@ -3,7 +3,7 @@ build-job:
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
     - mkdir /build
-    - cp . /build
+    - cp -p . /build
     - cd /build
     - yarn
   artifacts: 
