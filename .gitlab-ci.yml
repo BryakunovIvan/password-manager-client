@@ -3,18 +3,20 @@ build-job:
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
     - mkdir /build
-    - cp --recursive ./ /build
+    - cp --recursive ./ ./build
     - cd /build
+    - ls
     - yarn
   artifacts: 
     paths:
-      - /build
+      - ./build
 
 
 lint-job1:
   stage: test
   script:
     - cd /build
+    - ls
     - yarn lint
 
 test-job1:
