@@ -5,7 +5,6 @@ build-job:
     - mkdir /build
     - cp --recursive ./ /build
     - cd /build
-    - ls
     - yarn
   artifacts: 
     paths:
@@ -15,8 +14,7 @@ build-job:
 lint-job1:
   stage: test
   script:
-    - cd /build
-    - ls
+    - yarn
     - yarn lint
 
 test-job1:
