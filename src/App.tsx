@@ -18,7 +18,7 @@ function App() {
 	useEffect(() => {
 		initDB
 			.then(() => getAllUsers().then(setUsers))
-			.catch(console.error);
+				.catch(console.error);
 		console.log('Ошибка в линте')
 	}, []);
 
