@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { CreateNewUser } from './components';
 import {
 	initDB,
 } from './db';
 import {
-	addUser, getAllUsers, removeUserById, subscribe, TUser,
+	getAllUsers, removeUserById, subscribe, TUser,
 } from './db/userPublisher';
 
-function App() {
+const App = () => {
 	const [name, setName] = useState('');
 	const [users, setUsers] = useState<Array<TUser>>([] as Array<TUser>);
 
 	subscribe(setUsers);
-
-	const handleAddUser = () => {
-		addUser({ name });
-	};
 
 	const handleDeleteUser = () => {
 		removeUserById(users[0].id);
@@ -26,10 +23,15 @@ function App() {
 			.catch(console.error);
 	}, []);
 
+	if (!users.length) {
+		return (
+			<CreateNewUser />
+		);
+	}
+
 	return (
 		<div>
 			<input value={name} placeholder="Введите имя" onChange={(e) => setName(e.target.value)} />
-			<button onClick={handleAddUser}>Добавить пользователя</button>
 			<button onClick={handleDeleteUser}>Удалить пользователя</button>
 			{
 				users.map((user) => (
@@ -42,6 +44,6 @@ function App() {
 			}
 		</div>
 	);
-}
+};
 
 export default App;
