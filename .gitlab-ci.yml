@@ -1,3 +1,8 @@
+stages:
+  - build
+  - check-lint
+  - test
+
 cache:
   paths:
     - node_modules/
@@ -8,7 +13,7 @@ build-job:
     - yarn
 
 lint-job:
-  stage: test
+  stage: check-lint
   script:
     - yarn lint
 
