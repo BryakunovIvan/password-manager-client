@@ -32,7 +32,7 @@ const getDBStore = (objectStoreName: string) => {
 	return store;
 };
 
-const addTransaction = (objectStoreName: string, value: Object) => {
+export const addTransaction = (objectStoreName: string, value: Object) => {
 	const store = getDBStore(objectStoreName);
 	const request = store.add(value);
 
@@ -48,7 +48,7 @@ const addTransaction = (objectStoreName: string, value: Object) => {
 	});
 };
 
-const getTransaction = (objectStoreName: string) => {
+export const getTransaction = (objectStoreName: string) => {
 	const store = getDBStore(objectStoreName);
 	const request = store.getAll();
 
@@ -63,7 +63,7 @@ const getTransaction = (objectStoreName: string) => {
 	});
 };
 
-const deleteTransactionById = (objectStoreName: string, id: string | number) => {
+export const deleteTransactionById = (objectStoreName: string, id: string | number) => {
 	const store = getDBStore(objectStoreName);
 	const request = store.delete(id);
 
@@ -78,10 +78,6 @@ const deleteTransactionById = (objectStoreName: string, id: string | number) => 
 	});
 };
 
-export const addUser = (user: object) => addTransaction('user', user);
-export const getAllUsers = () => getTransaction('user');
-
-export const deleteUserById = (userId: number) => deleteTransactionById('user', userId);
 // export const addPass = (pass: object) => addTransaction('pass', pass);
 // export const getPass = (id: string) => getTransaction('pass', id);
 
