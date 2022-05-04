@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { addUser } from '../../db/userPublisher';
 
+import './style.css';
+
 export const CreateNewUser = () => {
 	const [name, setName] = useState('');
 	const [secret, setSecret] = useState('');
@@ -10,7 +12,7 @@ export const CreateNewUser = () => {
 	};
 
 	return (
-		<div>
+		<div className="create-user">
 			Создайте пользователя
 			<input value={name} placeholder="Введите имя" onChange={(e) => setName(e.target.value)} />
 			<input value={secret} placeholder="Введите имя" onChange={(e) => setSecret(e.target.value)} />
