@@ -22,7 +22,7 @@ function App() {
 
 	useEffect(() => {
 		initDB
-			.then(async () => setUsers(await getAllUsers()))
+			.then(() => getAllUsers().then(setUsers))
 			.catch(console.error);
 	}, []);
 
