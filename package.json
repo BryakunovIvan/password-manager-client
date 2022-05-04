@@ -12,7 +12,8 @@
     "start": "yarn start:dev",
     "lint": "eslint . --ext .js,.tsx,.ts --ignore-path .gitignore",
     "lint:fix": "yarn lint --fix",
-    "test": "jest"
+    "test": "jest",
+	"ready": "yarn && yarn lint && yarn test"
   },
   "dependencies": {
     "react": "^18.0.0",
