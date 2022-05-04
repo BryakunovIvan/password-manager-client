@@ -32,5 +32,6 @@ module.exports = {
 		'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
 		'import/prefer-default-export': 0,
 		'class-methods-use-this': 0,
+		'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
 	},
 };
