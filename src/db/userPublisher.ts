@@ -12,8 +12,7 @@ export type TUser = {
 }
 
 class UserPublisher extends Publisher<TUser[]> {
-	// TODO: убрать secret после создания регистрации.
-	addUser = async (user: Omit<TUser, 'id' | 'secret'>) => {
+	addUser = async (user: Omit<TUser, 'id'>) => {
 		addTransaction('user', user);
 		this.notifySubscribers(await this.getAllUsers());
 	};
