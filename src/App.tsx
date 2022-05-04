@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import {
-	getAllUsers, initDB,
+	initDB,
 } from './db';
-import { UserPublisherExample } from './db/userPublisher';
-
-type TUser = { name: string, id: number }
+import {
+	addUser, getAllUsers, removeUserById, subscribe, TUser,
+} from './db/userPublisher';
 
 function App() {
 	const [name, setName] = useState('');
 	const [users, setUsers] = useState<Array<TUser>>([] as Array<TUser>);
 
-	UserPublisherExample.subscribe(setUsers);
+	subscribe(setUsers);
 
 	const handleAddUser = () => {
-		UserPublisherExample.addUser({ name });
+		addUser({ name });
 	};
 
 	const handleDeleteUser = () => {
-		UserPublisherExample.removeUserById(users[0].id);
+		removeUserById(users[0].id);
 	};
 
 	useEffect(() => {
 		initDB
-			.then(() => getAllUsers().then(setUsers))
+			.then(async () => setUsers(await getAllUsers()))
 			.catch(console.error);
 	}, []);
 
