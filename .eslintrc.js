@@ -31,5 +31,6 @@ module.exports = {
 		'import/no-unresolved': 0,
 		'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
 		'import/prefer-default-export': 0,
+		'class-methods-use-this': 0,
 	},
 };
