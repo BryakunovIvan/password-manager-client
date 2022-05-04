@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div
+    class="create-user"
+  >
+    Создайте пользователя
+    <input
+      placeholder="Введите имя"
+      value=""
+    />
+    <input
+      placeholder="Введите имя"
+      value=""
+    />
+    <button>
+      Создать
+    </button>
+  </div>
+</div>
+`;
