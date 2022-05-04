@@ -11,8 +11,6 @@ function App() {
 
 	UserPublisherExample.subscribe(setUsers);
 
-	console.log('Обновление')
-
 	const handleAddUser = () => {
 		UserPublisherExample.addUser({ name });
 		// addUser({ name }).then((newUser) => setUsers([(newUser as TUser), ...users]));
