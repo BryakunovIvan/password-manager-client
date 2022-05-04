@@ -1,4 +1,4 @@
-export class Publisher {
+export class Publisher<T> {
 	subscribers: Array<Function> = [];
 
 	subscribe = (subscriber: Function) => {
@@ -9,9 +9,9 @@ export class Publisher {
 		// TODO
 	};
 
-	notifySubscribers = (params: any) => {
+	notifySubscribers = (value: T) => {
 		this.subscribers.forEach((subscriber) => {
-			subscriber(params);
+			subscriber(value);
 		});
 	};
 }
