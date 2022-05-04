@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {
-	addUser, deleteUserById, getAllUsers, initDB,
+	getAllUsers, initDB,
 } from './db';
 import { UserPublisherExample } from './db/userPublisher';
 
 type TUser = { name: string, id: number }
+
 function App() {
 	const [name, setName] = useState('');
 	const [users, setUsers] = useState<Array<TUser>>([] as Array<TUser>);
@@ -13,11 +14,10 @@ function App() {
 
 	const handleAddUser = () => {
 		UserPublisherExample.addUser({ name });
-		// addUser({ name }).then((newUser) => setUsers([(newUser as TUser), ...users]));
 	};
 
 	const handleDeleteUser = () => {
-		deleteUserById(users[0].id).then(() => getAllUsers().then(setUsers));
+		UserPublisherExample.removeUserById(users[0].id);
 	};
 
 	useEffect(() => {

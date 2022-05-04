@@ -1,4 +1,4 @@
-import { addUser, getAllUsers } from '.';
+import { addUser, deleteUserById, getAllUsers } from '.';
 import { Publisher } from './publisher';
 
 type TName = string;
@@ -12,8 +12,14 @@ type TUser = {
 }
 
 export class UserPublisher extends Publisher<TUser[]> {
-	addUser = async (user: object) => {
+	// TODO: убрать secret после создания регистрации.
+	addUser = async (user: Omit<TUser, 'id' | 'secret'>) => {
 		addUser(user);
+		this.notifySubscribers(await this.getAllUsers());
+	};
+
+	removeUserById = async (userId: TID) => {
+		deleteUserById(userId);
 		this.notifySubscribers(await this.getAllUsers());
 	};
 
