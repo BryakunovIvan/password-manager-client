@@ -4,14 +4,14 @@ import {
 	initDB,
 } from './db';
 import {
-	getAllUsers, removeUserById, subscribe, TUser,
-} from './db/userPublisher';
+	getAllUsers, removeUserById, events, TUser,
+} from './db/users-manager';
 
 const App = () => {
 	const [name, setName] = useState('');
 	const [users, setUsers] = useState<Array<TUser>>([] as Array<TUser>);
 
-	subscribe(setUsers);
+	events.subscribe(setUsers);
 
 	const handleDeleteUser = () => {
 		removeUserById(users[0].id);

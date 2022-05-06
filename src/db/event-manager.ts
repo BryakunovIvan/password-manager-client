@@ -1,4 +1,4 @@
-export class Publisher<T> {
+export class EventManager<T> {
 	subscribers: Array<Function> = [];
 
 	subscribe = (subscriber: Function) => {

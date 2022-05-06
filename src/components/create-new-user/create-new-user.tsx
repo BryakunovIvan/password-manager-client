@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addUser } from '../../db/userPublisher';
+import { addUser } from '../../db/users-manager';
 
 import './style.css';
 
