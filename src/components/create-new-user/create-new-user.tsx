@@ -15,7 +15,7 @@ export const CreateNewUser = () => {
 		<div className="create-user">
 			Создайте пользователя
 			<input value={name} placeholder="Введите имя" onChange={(e) => setName(e.target.value)} />
-			<input value={secret} placeholder="Введите имя" onChange={(e) => setSecret(e.target.value)} />
+			<input value={secret} placeholder="Введите секрет" onChange={(e) => setSecret(e.target.value)} />
 			<button onClick={handleClick}>Создать</button>
 		</div>
 	);
