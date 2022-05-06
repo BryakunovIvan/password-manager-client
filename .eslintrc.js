@@ -35,5 +35,6 @@ module.exports = {
 		'import/prefer-default-export': 0,
 		'class-methods-use-this': 0,
 		'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
+		'no-underscore-dangle': 0,
 	},
 };

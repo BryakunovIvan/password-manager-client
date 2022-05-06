@@ -11,16 +11,19 @@ const App = () => {
 	const [name, setName] = useState('');
 	const [users, setUsers] = useState<Array<TUser>>([] as Array<TUser>);
 
-	events.subscribe(setUsers);
-
 	const handleDeleteUser = () => {
 		removeUserById(users[0].id);
 	};
 
 	useEffect(() => {
+		events.subscribe(setUsers);
 		initDB
 			.then(() => getAllUsers().then(setUsers))
 			.catch(console.error);
+
+		return () => {
+			events.unsubscribe(setUsers);
+		};
 	}, []);
 
 	if (!users.length) {
@@ -31,7 +34,7 @@ const App = () => {
 
 	return (
 		<div>
-			<input value={name} placeholder="Введите имя" onChange={(e) => setName(e.target.value)} />
+			<input value={name} placeholder="Введите имя" onChange={(e) => { setName(e.target.value); }} />
 			<button onClick={handleDeleteUser}>Удалить пользователя</button>
 			{
 				users.map((user) => (
