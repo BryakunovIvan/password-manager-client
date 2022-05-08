@@ -7,7 +7,13 @@ type TSubscriber = {
 }
 
 export class EventManager<T> {
-	private subscribers: Array<TSubscriber> = [];
+	constructor(value: T) {
+		this.value = value;
+	}
+
+	private value: T = null;
+
+	public subscribers: Array<TSubscriber> = [];
 
 	private subscribeFunctionWithId = (subscriber: TSubscribersFunc, id: TSubscriberId) => {
 		if (this.subscribers.some((sub) => sub._id === id)) {
@@ -40,6 +46,12 @@ export class EventManager<T> {
 		this.subscribers = this.subscribers.filter((sub) => sub.func !== subscriber);
 	};
 
+	public setValue = (value: T) => {
+		this.value = value;
+	};
+
+	public getValue = () => this.value;
+
 	subscribe = (subscriber: TSubscribersFunc, unicueId?: TSubscriberId) => {
 		if (unicueId) {
 			return this.subscribeFunctionWithId(subscriber, unicueId);
@@ -58,9 +70,9 @@ export class EventManager<T> {
 		}
 	};
 
-	notifySubscribers = (value: T) => {
+	notifySubscribers = () => {
 		this.subscribers.forEach((subscriber) => {
-			subscriber.func(value);
+			subscriber.func(this.value);
 		});
 	};
 }
