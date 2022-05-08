@@ -4,26 +4,22 @@ import {
 	initDB,
 } from './db';
 import {
-	getAllUsers, removeUserById, events, TUser,
+	getAllUsers, removeUserById, observer, addUser,
 } from './db/users-manager';
+import { useObserver } from './hooks/useObserver';
 
 const App = () => {
 	const [name, setName] = useState('');
-	const [users, setUsers] = useState<Array<TUser>>([] as Array<TUser>);
+	const users = useObserver(observer, (value) => value);
 
 	const handleDeleteUser = () => {
 		removeUserById(users[0].id);
 	};
 
 	useEffect(() => {
-		events.subscribe(setUsers);
 		initDB
-			.then(() => getAllUsers().then(setUsers))
+			.then(() => getAllUsers())
 			.catch(console.error);
-
-		return () => {
-			events.unsubscribe(setUsers);
-		};
 	}, []);
 
 	if (!users.length) {
@@ -36,8 +32,9 @@ const App = () => {
 		<div>
 			<input value={name} placeholder="Введите имя" onChange={(e) => { setName(e.target.value); }} />
 			<button onClick={handleDeleteUser}>Удалить пользователя</button>
+			<button onClick={() => addUser({ name, secret: 'secret' })}>Создать пользователя</button>
 			{
-				users.map((user) => (
+				users.map((user: any) => (
 					<div key={user.id}>
 						{user.name}
 						{' '}
