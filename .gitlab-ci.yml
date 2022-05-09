@@ -11,4 +11,5 @@ cache:
 sync:
   stage: sync-git
   script: 
+    - git remote add github https://github.com/BryakunovIvan/password-manager-client.git
     - git push --all github
