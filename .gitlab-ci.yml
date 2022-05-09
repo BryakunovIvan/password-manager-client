@@ -11,4 +11,4 @@ cache:
 sync:
   stage: sync-git
   script: 
-    - git --version
+    - git push --all github
