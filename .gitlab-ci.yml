@@ -11,5 +11,7 @@ cache:
 sync:
   stage: sync-git
   script: 
+    - echo $GITHUB_COM_USER
+    - echo $GITHUB_PASSWORD
     - git remote add github https://github.com/BryakunovIvan/password-manager-client.git
     - git push --all github
