@@ -1,3 +1,5 @@
+import { generateHash } from '../tools/generateHash';
+
 type TSubscriberId = string | number;
 type TSubscribersFunc = Function;
 
@@ -36,7 +38,7 @@ export class EventManager<T> {
 			return false;
 		}
 
-		const id = Math.random();
+		const id = generateHash();
 		this.subscribers.push({ func: subscriber, _id: id });
 
 		return id;

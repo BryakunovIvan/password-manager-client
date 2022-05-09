@@ -2,6 +2,14 @@ import { EventManager } from '../event-manager';
 
 let observer = null as EventManager<Array<any>>;
 
+beforeAll(() => {
+	// Мок для функции generateHash
+	const mGetRandomValues = jest.fn().mockReturnValueOnce(new Uint32Array(10));
+	Object.defineProperty(window, 'crypto', {
+		value: { getRandomValues: mGetRandomValues },
+	});
+});
+
 beforeEach(() => {
 	observer = new EventManager([]);
 });
