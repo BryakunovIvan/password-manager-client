@@ -13,7 +13,7 @@ export class EventManager<T> {
 
 	private value: T = null;
 
-	public subscribers: Array<TSubscriber> = [];
+	private subscribers: Array<TSubscriber> = [];
 
 	private subscribeFunctionWithId = (subscriber: TSubscribersFunc, id: TSubscriberId) => {
 		if (this.subscribers.some((sub) => sub._id === id)) {
@@ -32,6 +32,10 @@ export class EventManager<T> {
 	};
 
 	private subscribeFunction = (subscriber: TSubscribersFunc) => {
+		if (this.subscribers.some((sub) => sub.func === subscriber)) {
+			return false;
+		}
+
 		const id = Math.random();
 		this.subscribers.push({ func: subscriber, _id: id });
 
@@ -51,6 +55,8 @@ export class EventManager<T> {
 	};
 
 	public getValue = () => this.value;
+
+	public getSubscribers = () => this.subscribers;
 
 	subscribe = (subscriber: TSubscribersFunc, unicueId?: TSubscriberId) => {
 		if (unicueId) {
