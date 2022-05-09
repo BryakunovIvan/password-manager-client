@@ -1,4 +1,5 @@
 stages:
+  - sync-git
   - build
   - check-lint
   - test
@@ -7,17 +8,7 @@ cache:
   paths:
     - node_modules/
 
-build-job:
-  stage: build
-  script:
-    - yarn
-
-lint-job:
-  stage: check-lint
-  script:
-    - yarn lint
-
-test-job:
-  stage: test
-  script:
-    - yarn test
+sync:
+  stage: sync-git
+  script: 
+    - git --version
