@@ -13,6 +13,7 @@
     "lint": "eslint . --ext .js,.tsx,.ts --ignore-path .gitignore",
     "lint:fix": "yarn lint --fix",
     "test": "jest",
+	"coverage": "jest --coverage",
 	"ready": "yarn && yarn lint && yarn test"
   },
   "dependencies": {
